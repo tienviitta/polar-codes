@@ -8,12 +8,15 @@ parser.add_argument("-K", "--code_dim", type=int)
 
 
 def main(M, K):
+    # Random seed
+    np.random.seed(123456)
+
     # initialise polar code
     myPC = PolarCode(M, K)
     myPC.construction_type = 'bb'
 
     # mothercode construction
-    design_SNR = 5.0
+    design_SNR = 0.0
     Construct(myPC, design_SNR)
     print(myPC, "\n\n")
 

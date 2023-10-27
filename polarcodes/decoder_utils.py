@@ -1,6 +1,7 @@
 import numpy as np
 from polarcodes.utils import *
 
+
 def hard_decision(y):
     """
         Hard decision of a log-likelihood.
@@ -10,6 +11,7 @@ def hard_decision(y):
         return 0
     else:
         return 1
+
 
 def upper_llr(l1, l2):
     """
@@ -40,6 +42,37 @@ def upper_llr(l1, l2):
     else:  # principal decoding equation
         return logdomain_sum(l1 + l2, 0) - logdomain_sum(l1, l2)
 
+
+def upper_llr_approx(l1, l2):
+    """
+    Update top branch LLR in the log-domain (approximation).
+    This function supports shortening by checking for infinite LLR cases.
+
+    Parameters
+    ----------
+    l1: float
+        input LLR corresponding to the top branch
+    l2: float
+        input LLR corresponding to the bottom branch
+
+    Returns
+    ----------
+    float
+        the top branch LLR at the next stage of the decoding tree
+
+    """
+
+    # check for infinite LLR, used in shortening
+    if l1 == np.inf and l2 != np.inf:
+        return l2
+    elif l1 != np.inf and l2 == np.inf:
+        return l1
+    elif l1 == np.inf and l2 == np.inf:
+        return np.inf
+    else:  # principal decoding equation
+        return np.sign(l1) * np.sign(l2) * np.min((np.abs(l1), np.abs(l2)))
+
+
 def lower_llr(l1, l2, b):
     """
     Update bottom branch LLR in the log-domain.
@@ -69,6 +102,7 @@ def lower_llr(l1, l2, b):
         return l1 - l2
     return np.nan
 
+
 def active_llr_level(i, n):
     """
         Find the first 1 in the binary expansion of i.
@@ -83,6 +117,7 @@ def active_llr_level(i, n):
         else:
             break
     return min(count, n)
+
 
 def active_bit_level(i, n):
     """

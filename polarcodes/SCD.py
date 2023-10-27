@@ -2,10 +2,12 @@ import numpy as np
 from polarcodes.utils import *
 from polarcodes.decoder_utils import *
 
+
 class SCD:
     def __init__(self, myPC):
         self.myPC = myPC
-        self.L = np.full((self.myPC.N, self.myPC.n + 1), np.nan, dtype=np.float64)
+        self.L = np.full((self.myPC.N, self.myPC.n + 1),
+                         np.nan, dtype=np.float64)
         self.B = np.full((self.myPC.N, self.myPC.n + 1), np.nan)
         self.L[:, 0] = self.myPC.likelihoods
 
@@ -50,7 +52,8 @@ class SCD:
                 if j % block_size < branch_size:  # upper branch
                     top_llr = self.L[j, s]
                     btm_llr = self.L[j + branch_size, s]
-                    self.L[j, s + 1] = upper_llr(top_llr, btm_llr)
+                    # self.L[j, s + 1] = upper_llr(top_llr, btm_llr)
+                    self.L[j, s + 1] = upper_llr_approx(top_llr, btm_llr)
                 else:  # lower branch
                     btm_llr = self.L[j, s]
                     top_llr = self.L[j - branch_size, s]
@@ -66,5 +69,6 @@ class SCD:
             branch_size = int(block_size / 2)
             for j in range(l, -1, -block_size):
                 if j % block_size >= branch_size:  # lower branch
-                    self.B[j - branch_size, s - 1] = int(self.B[j, s]) ^ int(self.B[j - branch_size, s])
+                    self.B[j - branch_size, s -
+                           1] = int(self.B[j, s]) ^ int(self.B[j - branch_size, s])
                     self.B[j, s - 1] = self.B[j, s]

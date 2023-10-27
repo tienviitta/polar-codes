@@ -8,6 +8,9 @@ parser.add_argument("-K", "--code_dim", type=int)
 
 
 def main(M, K):
+    # Random seed
+    np.random.seed(123456)
+
     # initialise shortened polar code
     shorten_params = ('shorten', 'brs', None, None, False)
     myPC = PolarCode(M, K, shorten_params)
