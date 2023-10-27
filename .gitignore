@@ -1,1 +1,7 @@
+# Orig
 .idea
+
+# Dirs
+build/
+__pycache__/
+py_polar_codes.egg-info/

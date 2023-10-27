@@ -1,0 +1,36 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: test_polar_nopunct",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}/test_polar_nopunct.py",
+            "args": [
+                "-M",
+                "64",
+                "-K",
+                "36"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug: test_polar_shorten",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}/test_polar_shorten.py",
+            "args": [
+                "-M",
+                "200",
+                "-K",
+                "100"
+            ],
+            "console": "integratedTerminal"
+        },
+    ]
+}
