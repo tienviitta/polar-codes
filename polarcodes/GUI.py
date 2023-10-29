@@ -4,6 +4,7 @@ from matplotlib.figure import Figure
 import numpy as np
 from polarcodes.PolarCode import PolarCode
 
+
 class GUI:
     def __init__(self):
         # initialise GUI global vars
@@ -44,7 +45,8 @@ class GUI:
         # labels
         titleFont = ("Arial", 10, "bold")
         pc_title_label = Label(my_frame, text="Polar Code", font=titleFont)
-        puncturing_title_label = Label(my_frame, text="Puncturing/Shortening", font=titleFont)
+        puncturing_title_label = Label(
+            my_frame, text="Puncturing/Shortening", font=titleFont)
         sim_label = Label(my_frame, text="Simulation", font=titleFont)
         plot_label = Label(my_frame, text="Plot", font=titleFont)
         n_label = Label(my_frame, text="N")
@@ -93,16 +95,20 @@ class GUI:
         shortening_options = ['brs', 'wls', 'bgl']
         shortening_opt_val = StringVar(my_frame)
         shortening_opt_val.set(shortening_options[0])
-        shortening_opt = OptionMenu(my_frame, shortening_opt_val, *shortening_options)
+        shortening_opt = OptionMenu(
+            my_frame, shortening_opt_val, *shortening_options)
 
         # check and radio buttons
         manual_construction_flag = IntVar()
         punct_type_var = IntVar()
         punct_type_var.set(1)
 
-        c = Checkbutton(my_frame, text="Manual Construction", variable=manual_construction_flag)
-        p_opt = Radiobutton(my_frame, text="Puncturing", value=0, variable=punct_type_var)
-        s_opt = Radiobutton(my_frame, text="Shortening", value=1, variable=punct_type_var)
+        c = Checkbutton(my_frame, text="Manual Construction",
+                        variable=manual_construction_flag)
+        p_opt = Radiobutton(my_frame, text="Puncturing",
+                            value=0, variable=punct_type_var)
+        s_opt = Radiobutton(my_frame, text="Shortening",
+                            value=1, variable=punct_type_var)
 
         # buttons
         button_1 = Button(my_frame, text="Simulate",
@@ -123,7 +129,7 @@ class GUI:
         frozen_label.grid(row=4, column=0, sticky=E)
         const_title_label.grid(row=3, column=0, sticky=E)
         const_opt.grid(row=3, column=1, sticky="nsew")
-        c.grid(row=6, column = 1)
+        c.grid(row=6, column=1)
         puncturing_title_label.grid(row=0, column=2, columnspan=2)
         shortening_opt.grid(row=2, column=3, sticky="nsew")
         punct_algorithm_label.grid(row=2, column=2, sticky=E)
@@ -159,7 +165,8 @@ class GUI:
         my_frame = Frame(self.master)
         my_text_var = StringVar(my_frame)
         my_text_var.set("Simulation updates here...")
-        status = Label(my_frame, relief=SUNKEN, anchor=W, textvariable=my_text_var)
+        status = Label(my_frame, relief=SUNKEN, anchor=W,
+                       textvariable=my_text_var)
         status.pack(fill=X)
         self.myPC.status_bar = my_text_var
         return my_frame

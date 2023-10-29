@@ -9,6 +9,7 @@ import numpy as np
 from polarcodes.utils import *
 from polarcodes.Construct import Construct
 
+
 class Shorten(Construct):
     def __init__(self, myPC, design_SNR, manual=False):
         """
@@ -76,11 +77,13 @@ class Shorten(Construct):
         if myPC.construction_type == 'bb':
             z0 = np.array([-design_SNR_normalised] * myPC.N)
             z0[myPC.punct_set] = -np.inf
-            myPC.reliabilities, myPC.frozen, myPC.FERestimate = self.general_pcc(myPC, z0)
+            myPC.reliabilities, myPC.frozen, myPC.FERestimate = self.general_pcc(
+                myPC, z0)
         elif myPC.construction_type == 'ga':
             z0 = np.array([4 * design_SNR_normalised] * myPC.N)
             z0[myPC.punct_set] = np.inf
-            myPC.reliabilities, myPC.frozen, myPC.FERestimate = self.general_ga(myPC, z0)
+            myPC.reliabilities, myPC.frozen, myPC.FERestimate = self.general_ga(
+                myPC, z0)
 
     def wls_pattern(self, myPC):
         """
@@ -151,7 +154,8 @@ class Shorten(Construct):
             if myPC.reliabilities[i] not in myPC.source_set:
                 R_m.append(myPC.reliabilities[i])
         t = myPC.M - myPC.K   # number of frozen bits left to select
-        frozen = np.array(np.append(np.array(R_m[:t]), myPC.source_set))   # first t bits of R_m, then append S
+        # first t bits of R_m, then append S
+        frozen = np.array(np.append(np.array(R_m[:t]), myPC.source_set))
         return frozen
 
     def perm(self, myPC):
@@ -172,7 +176,8 @@ class Shorten(Construct):
         """
 
         punct_set_last = self.wls_pattern(myPC)
-        punct_set = np.array(bit_perm(punct_set_last, myPC.perm, myPC.n))  # specify perm before construction
+        # specify perm before construction
+        punct_set = np.array(bit_perm(punct_set_last, myPC.perm, myPC.n))
         return punct_set
 
     def wang_liu(self, myPC):
@@ -185,7 +190,7 @@ class Shorten(Construct):
                 row = G[i, :]
                 row_wt = np.sum(row)
                 if row_wt == 1:
-                    j = (np.where(row==1)[0]).item()
+                    j = (np.where(row == 1)[0]).item()
                     G[i, :] = np.zeros(N)
                     G[:, j] = np.zeros(N)
                     s.append(i)
@@ -212,6 +217,8 @@ class Shorten(Construct):
 
         num_bits = myPC.n
         s = myPC.N - myPC.M  # number bits to shorten
-        reversed_indices = np.array([bit_reversed(i, num_bits) for i in myPC.reliabilities])
-        punct_set = np.array(reversed_indices[-s:])  # last s bits of reversed_indices
+        reversed_indices = np.array(
+            [bit_reversed(i, num_bits) for i in myPC.reliabilities])
+        # last s bits of reversed_indices
+        punct_set = np.array(reversed_indices[-s:])
         return punct_set

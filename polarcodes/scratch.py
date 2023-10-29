@@ -1,4 +1,5 @@
 """
+Design SNR: 0.0 dB
 
 test_polar_nopunct.py -M 8 -K 5 
 
@@ -179,6 +180,7 @@ PASS: True
 """
 
 """
+Design SNR: 0.0 dB
 
 test_polar_nopunct.py -M 8 -K 5 
 

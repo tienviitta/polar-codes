@@ -7,6 +7,7 @@ algorithm implementations.
 
 import numpy as np
 
+
 def bit_reversed(x, n):
     """
     Bit-reversal operation.
@@ -30,6 +31,7 @@ def bit_reversed(x, n):
         if (x & (1 << i)):  # if it matches that bit
             result |= (1 << (n - 1 - i))  # set the "opposite" bit in result
     return result
+
 
 def logdomain_diff(x, y):
     """
@@ -55,6 +57,7 @@ def logdomain_diff(x, y):
         z = y + np.log1p(-np.exp(x - y))
     return z
 
+
 def logdomain_sum(x, y):
     """
     Find the addition of x and y in log-domain. It uses log1p to improve numerical stability.
@@ -78,6 +81,7 @@ def logdomain_sum(x, y):
     else:
         z = y + np.log1p(np.exp(x - y))
     return z
+
 
 def bit_perm(x, p, n):
     """
@@ -106,6 +110,8 @@ def bit_perm(x, p, n):
     return result
 
 # find hamming weight of an index x
+
+
 def hamming_wt(x, n):
     """
     Find the bit-wise hamming weight of an index.
@@ -133,6 +139,8 @@ def hamming_wt(x, n):
     return wt
 
 # sort by hamming_wt()
+
+
 def sort_by_wt(x, n):
     """
     Sort a vector by index hamming weights using hamming_wt().
@@ -156,6 +164,7 @@ def sort_by_wt(x, n):
         wts[i] = hamming_wt(x[i], n)
     mask = np.argsort(wts)
     return x[mask]
+
 
 def inverse_set(F, N):
     """
@@ -182,6 +191,7 @@ def inverse_set(F, N):
             not_F.append(i)
     return np.array(not_F)
 
+
 def subtract_set(X, Y):
     """
     Subtraction of two sets.
@@ -205,6 +215,7 @@ def subtract_set(X, Y):
         if x not in Y:
             X_new.append(x)
     return np.array(X_new)
+
 
 def arikan_gen(n):
     """
@@ -230,8 +241,10 @@ def arikan_gen(n):
 
 # Gaussian Approximation helper functions:
 
+
 def phi_residual(x, val):
     return phi(x) - val
+
 
 def phi(x):
     if x < 10:
@@ -241,8 +254,10 @@ def phi(x):
         y = np.sqrt(3.14159 / x) * (1 - 10 / (7 * x)) * np.exp(-x / 4)
     return y
 
+
 def phi_inv(y):
     return bisection(y, 0, 10000)
+
 
 def bisection(val, a, b):
     c = a
@@ -259,14 +274,17 @@ def bisection(val, a, b):
             a = c
     return c
 
+
 def logQ_Borjesson(x):
     a = 0.339
     b = 5.510
     half_log2pi = 0.5 * np.log(2 * np.pi)
     if x < 0:
         x = -x
-        y = -np.log((1 - a) * x + a * np.sqrt(b + x * x)) - (x * x / 2) - half_log2pi
+        y = -np.log((1 - a) * x + a * np.sqrt(b + x * x)) - \
+            (x * x / 2) - half_log2pi
         y = np.log(1 - np.exp(y))
     else:
-        y = -np.log((1 - a) * x + a * np.sqrt(b + x * x)) - (x * x / 2) - half_log2pi
+        y = -np.log((1 - a) * x + a * np.sqrt(b + x * x)) - \
+            (x * x / 2) - half_log2pi
     return y

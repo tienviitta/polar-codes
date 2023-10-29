@@ -11,8 +11,9 @@ these likelihoods will be set to infinity. Currently only BPSK modulation is sup
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 class AWGN:
-    def __init__(self, myPC, Eb_No, plot_noise = False):
+    def __init__(self, myPC, Eb_No, plot_noise=False):
         """
         Parameters
         ----------
@@ -32,7 +33,8 @@ class AWGN:
 
         tx = self.modulation(self.myPC.u)
         rx = tx + self.noise(self.myPC.N)
-        self.myPC.likelihoods = np.array(self.get_likelihoods(rx), dtype=np.float64)
+        self.myPC.likelihoods = np.array(
+            self.get_likelihoods(rx), dtype=np.float64)
 
         # change shortened/punctured bit LLRs
         if self.myPC.punct_flag:
@@ -121,7 +123,7 @@ class AWGN:
             num_bins = 1000
             count, bins, ignored = plt.hist(s, num_bins, density=True)
             plt.plot(bins, 1 / (np.sqrt(np.pi * self.No)) * np.exp(- (bins) ** 2 / self.No),
-                        linewidth=2, color='r')
+                     linewidth=2, color='r')
             plt.title('AWGN')
             plt.xlabel('Noise, n')
             plt.ylabel('Density')

@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 import threading
 import tkinter as tk
 
+
 class PolarCode:
     """
     Attributes
@@ -122,7 +123,8 @@ class PolarCode:
         self.source_set_lookup = self.get_lut(punct_params[3])
         self.punct_algorithm = punct_params[1]
         self.update_frozen_flag = punct_params[4]
-        self.recip_flag = np.array_equal(np.array(punct_params[2]), np.array(punct_params[3]))
+        self.recip_flag = np.array_equal(
+            np.array(punct_params[2]), np.array(punct_params[3]))
 
     def __str__(self):
         """
@@ -139,16 +141,22 @@ class PolarCode:
         output = '=' * 10 + " Polar Code " + '=' * 10 + '\n'
         output += "N: " + str(self.N) + '\n'
         output += "M: " + str(self.M) + '\n'
-        output += "K: "+ str(self.K) + '\n'
+        output += "K: " + str(self.K) + '\n'
         output += "Mothercode Construction: " + self.construction_type + '\n'
-        output += "Ordered Bits (least reliable to most reliable): " + str(self.reliabilities) + '\n'
+        output += "Ordered Bits (least reliable to most reliable): " + \
+            str(self.reliabilities) + '\n'
         output += "Frozen Bits: " + str(self.frozen) + '\n'
         output += "Puncturing Flag: " + str(self.punct_flag) + '\n'
-        output += "Puncturing Parameters: {punct_type: " + str(self.punct_type) + '\n'
-        output += "                        punct_algorithm: " + str(self.punct_algorithm) + '\n'
-        output += "                        punct_set: " + str(self.punct_set) + '\n'
-        output += "                        source_set: " + str(self.source_set) + '\n'
-        output += "                        update_frozen_flag: " + str(self.update_frozen_flag) + "}" + '\n'
+        output += "Puncturing Parameters: {punct_type: " + \
+            str(self.punct_type) + '\n'
+        output += "                        punct_algorithm: " + \
+            str(self.punct_algorithm) + '\n'
+        output += "                        punct_set: " + \
+            str(self.punct_set) + '\n'
+        output += "                        source_set: " + \
+            str(self.source_set) + '\n'
+        output += "                        update_frozen_flag: " + \
+            str(self.update_frozen_flag) + "}" + '\n'
         return output
 
     def set_message(self, m):
@@ -201,7 +209,8 @@ class PolarCode:
 
         Eb_No_dB = design_SNR
         Eb_No = 10 ** (Eb_No_dB / 10)  # convert dB scale to linear
-        Eb_No = Eb_No * (self.K / self.M)  # normalised message signal energy by R=K/M (M=N if not punctured)
+        # normalised message signal energy by R=K/M (M=N if not punctured)
+        Eb_No = Eb_No * (self.K / self.M)
         return Eb_No
 
     def get_lut(self, my_set):
@@ -321,20 +330,24 @@ class PolarCode:
         print('=' * 10, "Simulation", '=' * 10)
         for i in range(len(Eb_No_vec)):
             # run simulation for the current SNR
-            frame_error_count, bit_error_count, num_blocks = self.run_simulation(Eb_No_vec[i], max_iter, min_errors, min_iterations)
+            frame_error_count, bit_error_count, num_blocks = self.run_simulation(
+                Eb_No_vec[i], max_iter, min_errors, min_iterations)
 
             # calculate FER and BER
             frame_error_rate = frame_error_count / num_blocks
             bit_error_rate = bit_error_count / (self.K * num_blocks)
             frame_error_rates[i] = frame_error_rate
             bit_error_rates[i] = bit_error_rate
-            print("Eb/No:", round(Eb_No_vec[i], 5), "  FER:", round(frame_error_rate, 3), "  BER:", round(bit_error_rate, 5))
-            print('# Iterations:', num_blocks, '  # Frame Errors:', frame_error_count, ' # Bit Errors:', bit_error_count)
+            print("Eb/No:", round(Eb_No_vec[i], 5), "  FER:", round(
+                frame_error_rate, 3), "  BER:", round(bit_error_rate, 5))
+            print('# Iterations:', num_blocks, '  # Frame Errors:',
+                  frame_error_count, ' # Bit Errors:', bit_error_count)
             print('='*20)
 
             # update GUI (if used)
             if self.status_bar != None:
-                self.status_bar.set("Simulation progress: " + str(i + 1) + "/" + str(len(Eb_No_vec)))
+                self.status_bar.set(
+                    "Simulation progress: " + str(i + 1) + "/" + str(len(Eb_No_vec)))
 
             # early stopping condition
             if frame_error_count < min_errors:
@@ -350,21 +363,24 @@ class PolarCode:
         if self.status_bar != None:
             self.gui_widgets[3].delete("1.0", tk.END)
             self.gui_widgets[6].delete("1.0", tk.END)
-            self.gui_widgets[3].insert(tk.INSERT, ",".join(map(str, self.frozen)))
-            self.gui_widgets[6].insert(tk.INSERT, ",".join(map(str, self.punct_set)))
+            self.gui_widgets[3].insert(
+                tk.INSERT, ",".join(map(str, self.frozen)))
+            self.gui_widgets[6].insert(
+                tk.INSERT, ",".join(map(str, self.punct_set)))
 
         # update console and GUI
         print("Successfully completed simulation.\n")
         if self.status_bar != None:
             self.status_bar.set("Simulation progress: Done.")
 
-    def plot_helper(self, new_plot, sim_filenames, dir, plot_title = 'Polar Code Performance'):
+    def plot_helper(self, new_plot, sim_filenames, dir, plot_title='Polar Code Performance'):
         # plot the FER and BER from file list
         new_plot.cla()
         for sim_filename in sim_filenames:
             with open(dir + sim_filename + '.json') as data_file:
                 data_loaded = json.load(data_file)
-            new_plot.plot(data_loaded['SNR'], data_loaded['FER'], '-o', markersize=6, linewidth=3, label=sim_filename)
+            new_plot.plot(data_loaded['SNR'], data_loaded['FER'],
+                          '-o', markersize=6, linewidth=3, label=sim_filename)
 
         # format the plots
         new_plot.set_title(plot_title)
@@ -419,6 +435,7 @@ class PolarCode:
         Eb_No_vec = gui_dict['snr_values']
 
         # run simulation in another thread to avoid GUI freeze
-        th = threading.Thread(name='sim_thread', target=self.simulate, args=(save_to, Eb_No_vec, design_SNR, iterations, 1000, min_frame_errors, 1729, manual_const_flag,))
+        th = threading.Thread(name='sim_thread', target=self.simulate, args=(
+            save_to, Eb_No_vec, design_SNR, iterations, 1000, min_frame_errors, 1729, manual_const_flag,))
         th.setDaemon(True)
         th.start()

@@ -7,8 +7,9 @@ A polar encoder class with systematic and non-systematic methods.
 import numpy as np
 from polarcodes.utils import *
 
+
 class Encode:
-    def __init__(self, myPC, encoder_name = 'polar_encode'):
+    def __init__(self, myPC, encoder_name='polar_encode'):
         """
         Parameters
         ----------
@@ -49,7 +50,8 @@ class Encode:
         mid = i1 + h_shift  # right-aligned mid-point
 
         for k in range(i1, mid):
-            self.myPC.u[k] = self.myPC.u[k] ^ self.myPC.u[k + h_shift]  # add right partition to the left partition (mod 2)
+            # add right partition to the left partition (mod 2)
+            self.myPC.u[k] = self.myPC.u[k] ^ self.myPC.u[k + h_shift]
 
         if h_shift >= 2:
             self.polar_encode2(i1, mid - 1)     # recursion on left partition

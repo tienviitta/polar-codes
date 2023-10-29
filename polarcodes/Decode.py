@@ -8,8 +8,9 @@ import numpy as np
 from polarcodes.utils import *
 from polarcodes.SCD import SCD
 
+
 class Decode:
-    def __init__(self, myPC, decoder_name = 'scd'):
+    def __init__(self, myPC, decoder_name='scd'):
         """
         Parameters
         ----------
@@ -26,7 +27,8 @@ class Decode:
         if decoder_name == 'scd':
             scd = SCD(myPC)
             self.x_noisy = scd.decode()
-            self.myPC.message_received = self.noisy_message(self.x_noisy, False)
+            self.myPC.message_received = self.noisy_message(
+                self.x_noisy, False)
         elif decoder_name == 'systematic_scd':
             scd = SCD(myPC)
             self.x_noisy = scd.decode()

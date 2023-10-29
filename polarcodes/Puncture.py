@@ -1,6 +1,7 @@
 import numpy as np
 from polarcodes.Construct import Construct
 
+
 class Puncture(Construct):
     def __init__(self, myPC, design_SNR, manual=False):
         """

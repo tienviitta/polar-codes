@@ -9,6 +9,7 @@ Mothercode constructions supported: Bhattacharyya Bounds, Gaussian Approximation
 import numpy as np
 from polarcodes.utils import *
 
+
 class Construct:
     def __init__(self, myPC, design_SNR, manual=False):
         """
@@ -32,10 +33,12 @@ class Construct:
         design_SNR_normalised = myPC.get_normalised_SNR(design_SNR)
         if myPC.construction_type == 'bb':
             z0 = -design_SNR_normalised
-            myPC.reliabilities, myPC.frozen, myPC.FERestimate = self.general_pcc(myPC, z0)
+            myPC.reliabilities, myPC.frozen, myPC.FERestimate = self.general_pcc(
+                myPC, z0)
         elif myPC.construction_type == 'ga':
             z0 = np.array([4 * design_SNR_normalised] * myPC.N)
-            myPC.reliabilities, myPC.frozen, myPC.FERestimate = self.general_ga(myPC, z0)
+            myPC.reliabilities, myPC.frozen, myPC.FERestimate = self.general_ga(
+                myPC, z0)
         myPC.frozen_lookup = myPC.get_lut(myPC.frozen)
 
     def general_pcc(self, myPC, z0):
@@ -85,11 +88,14 @@ class Construct:
                         z[k + int(u / 2), j] = -np.inf
                     # principal equations
                     else:
-                        z[k, j] = logdomain_diff(logdomain_sum(z_top, z_bottom), z_top + z_bottom)
+                        z[k, j] = logdomain_diff(logdomain_sum(
+                            z_top, z_bottom), z_top + z_bottom)
                         z[k + int(u / 2), j] = z_top + z_bottom
 
-        reliabilities = np.argsort(-z[:, n], kind='mergesort')   # ordered by least reliable to most reliable
-        frozen = np.argsort(z[:, n], kind='mergesort')[myPC.K:]     # select N-K least reliable channels
+        # ordered by least reliable to most reliable
+        reliabilities = np.argsort(-z[:, n], kind='mergesort')
+        # select N-K least reliable channels
+        frozen = np.argsort(z[:, n], kind='mergesort')[myPC.K:]
         FERest = self.FER_estimate(frozen, z[:, n])
         myPC.z = z[:, n]
         return reliabilities, frozen, FERest
@@ -169,12 +175,16 @@ class Construct:
                     z_top = z[k, j - 1]
                     z_bottom = z[k + int(u / 2), j - 1]
 
-                    z[k, j] = phi_inv(1 - (1 - phi(z_top)) * (1 - phi(z_bottom)))
+                    z[k, j] = phi_inv(1 - (1 - phi(z_top))
+                                      * (1 - phi(z_bottom)))
                     z[k + int(u / 2), j] = z_top + z_bottom
 
-        m = np.array([logQ_Borjesson(0.707*np.sqrt(z[i, myPC.n])) for i in range(myPC.N)])
-        reliabilities = np.argsort(-m, kind='mergesort')    # ordered by least reliable to most reliable
-        frozen = np.argsort(m, kind='mergesort')[myPC.K:]     # select N-K least reliable channels
+        m = np.array([logQ_Borjesson(0.707*np.sqrt(z[i, myPC.n]))
+                     for i in range(myPC.N)])
+        # ordered by least reliable to most reliable
+        reliabilities = np.argsort(-m, kind='mergesort')
+        # select N-K least reliable channels
+        frozen = np.argsort(m, kind='mergesort')[myPC.K:]
         FERest = self.FER_estimate(frozen, m)
         myPC.z = m
         return reliabilities, frozen, FERest
