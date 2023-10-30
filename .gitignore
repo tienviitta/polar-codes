@@ -1,5 +1,6 @@
-# Orig
+# Files
 .idea
+*.bkp
 
 # Dirs
 build/

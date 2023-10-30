@@ -1,4 +1,6 @@
 """
+The "chk" version: upper_llr(top_llr, btm_llr)
+
 Design SNR: 0.0 dB
 
 test_polar_nopunct.py -M 8 -K 5 
@@ -180,6 +182,8 @@ PASS: True
 """
 
 """
+The "chk" approximation: upper_llr_approx(top_llr, btm_llr)
+
 Design SNR: 0.0 dB
 
 test_polar_nopunct.py -M 8 -K 5 
@@ -208,7 +212,7 @@ Natural order?:
 
 l = [0, 4, 2, 6, 1, 5, 3, 7]
 
-l = 0:
+j = 0, l = 0:
 array([[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 ,     nan,     nan,     nan],
        [-1.4566, -0.5576,     nan,     nan],
@@ -226,7 +230,7 @@ array([[nan, nan, nan,  0.],
        [nan, nan, nan, nan],
        [nan, nan, nan, nan]])
 
-l = 4:
+j = 1, l = 4:
 array([[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 ,     nan,     nan,     nan],
        [-1.4566, -0.5576,     nan,     nan],
@@ -244,7 +248,7 @@ array([[nan, nan,  0.,  0.],
        [nan, nan, nan, nan],
        [nan, nan, nan, nan]])
 
-l = 2:
+j = 2, l = 2:
 array([[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 ,     nan,     nan,     nan],
        [-1.4566, -0.5576, -0.7184,  0.7184],
@@ -262,7 +266,7 @@ array([[nan, nan,  0.,  0.],
        [nan, nan, nan, nan],
        [nan, nan, nan, nan]])
 
-l = 6:
+j = 3, l = 6:
 array([[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 ,     nan,     nan,     nan],
        [-1.4566, -0.5576, -0.7184,  0.7184],
@@ -280,7 +284,7 @@ array([[nan,  1.,  0.,  0.],
        [nan,  1.,  1.,  1.],
        [nan, nan, nan, nan]])
 
-l = 1:
+j = 4, l = 1:
 array([[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 , -2.2148, -2.0141, -1.9442],
        [-1.4566, -0.5576, -0.7184,  0.7184],
@@ -298,7 +302,7 @@ array([[nan,  1.,  0.,  0.],
        [nan,  1.,  1.,  1.],
        [nan, nan, nan, nan]])
 
-l = 5:
+j = 5, l = 5:
 array([[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 , -2.2148, -2.0141, -1.9442],
        [-1.4566, -0.5576, -0.7184,  0.7184],
@@ -360,3 +364,5 @@ The decoded message is: [1 0 0 1 0]
 PASS: True
 
 """
+
+...
