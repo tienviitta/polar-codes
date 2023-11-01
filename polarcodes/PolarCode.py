@@ -98,7 +98,7 @@ class PolarCode:
         self.M = M
         self.N = int(2**(np.ceil(np.log2(M))))
         self.n = int(np.log2(self.N))
-        self.F = arikan_gen(self.n)
+        self.F = arikan_gen(self.n)  # TODO: np.matmul(myPC.u, myPC.F) % 2?!
         self.K = K
         self.s = self.N - self.M
         self.reliabilities = np.array([])

@@ -234,6 +234,7 @@ def arikan_gen(n):
     """
 
     F = np.array([[1, 1], [0, 1]])
+    # F = np.array([[1, 0], [1, 1]])
     F_n = F
     for i in range(n - 1):
         F_n = np.kron(F, F_n)

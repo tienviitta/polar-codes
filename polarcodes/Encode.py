@@ -22,6 +22,7 @@ class Encode:
         """
 
         self.myPC = myPC
+        # TODO: np.matmul(myPC.u, myPC.F) % 2?!
         if encoder_name == 'polar_encode':
             self.polar_encode()
         elif encoder_name == 'polar_encode_recursive':

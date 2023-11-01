@@ -2,6 +2,8 @@ import numpy as np
 from polarcodes import *
 import argparse
 
+np.set_printoptions(precision=4, suppress=True)
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-M", "--block_length", type=int)
 parser.add_argument("-K", "--code_dim", type=int)
