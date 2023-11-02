@@ -6,11 +6,11 @@ A polar decoder class. Currently only Successive Cancellation Decoder (SCD) is s
 
 import numpy as np
 from polarcodes.utils import *
-from polarcodes.SCD import SCD
+from polarcodes.PSCD import PSCD
 
 
 class Decode:
-    def __init__(self, myPC, decoder_name='scd'):
+    def __init__(self, myPC, decoder_name='pscd'):
         """
         Parameters
         ----------
@@ -24,13 +24,13 @@ class Decode:
         self.x_noisy = np.array([])
 
         # select decoding algorithm
-        if decoder_name == 'scd':
-            scd = SCD(myPC)
+        if decoder_name == 'pscd':
+            scd = PSCD(myPC)
             self.x_noisy = scd.decode()
             self.myPC.message_received = self.noisy_message(
                 self.x_noisy, False)
-        elif decoder_name == 'systematic_scd':
-            scd = SCD(myPC)
+        elif decoder_name == 'systematic_pscd':
+            scd = PSCD(myPC)
             self.x_noisy = scd.decode()
             self.myPC.message_received = self.noisy_message(self.x_noisy, True)
 

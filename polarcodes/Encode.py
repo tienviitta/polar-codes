@@ -23,6 +23,8 @@ class Encode:
 
         self.myPC = myPC
         # TODO: np.matmul(myPC.u, myPC.F) % 2?!
+        if encoder_name == 'polar_enc_m':
+            self.polar_enc_m()
         if encoder_name == 'polar_encode':
             self.polar_encode()
         elif encoder_name == 'polar_encode_recursive':
@@ -80,6 +82,13 @@ class Encode:
                     l = p + k
                     self.myPC.u[l] = self.myPC.u[l] ^ self.myPC.u[l + n_split]
             n = n_split
+
+    def polar_enc_m(self):
+        """
+        Encodes a message using polar coding with a vector-matrix multiplication.
+        The message ``x`` is encoded using in-place operations of output ``u`` in ``myPC``.
+        """
+        self.myPC.u = np.matmul(self.myPC.u, self.myPC.F) % 2
 
     def systematic_encode(self):
         """

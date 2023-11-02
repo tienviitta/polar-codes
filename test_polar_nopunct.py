@@ -28,7 +28,7 @@ def main(M, K):
     print("The message is:", my_message)
 
     # encode message
-    Encode(myPC)
+    Encode(myPC, encoder_name='polar_enc_m')
     print("The coded message is:", myPC.get_codeword())
 
     # transmit the codeword

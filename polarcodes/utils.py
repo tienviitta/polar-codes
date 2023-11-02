@@ -234,7 +234,29 @@ def arikan_gen(n):
     """
 
     F = np.array([[1, 1], [0, 1]])
-    # F = np.array([[1, 0], [1, 1]])
+    F_n = F
+    for i in range(n - 1):
+        F_n = np.kron(F, F_n)
+    return F_n
+
+
+def polar_gen(n):
+    """
+    The n-th kronecker product of [[1, 0], [1, 1]]
+
+    Parameters
+    ----------
+    n: int
+        log2(N), where N is the block length
+
+    Returns
+    ----------
+    ndarray<int>
+        polar code generator matrix
+
+    """
+
+    F = np.array([[1, 0], [1, 1]])
     F_n = F
     for i in range(n - 1):
         F_n = np.kron(F, F_n)

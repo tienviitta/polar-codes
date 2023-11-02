@@ -3,7 +3,7 @@ from polarcodes.utils import *
 from polarcodes.decoder_utils import *
 
 
-class SCD:
+class PSCD:
     def __init__(self, myPC):
         self.myPC = myPC
         self.L = np.full((self.myPC.N, self.myPC.n + 1),
@@ -13,8 +13,9 @@ class SCD:
 
     def decode(self):
         """
-        Successive Cancellation Decoder. The decoded message is set to ``message_received`` in ``myPC``.
-        The decoder will use the frozen set as defined by ``frozen`` in ``myPC``.
+        Successive Cancellation Decoder. The decoded message is set to 
+        ``message_received`` in ``myPC``. The decoder will use the frozen set as 
+        defined by ``frozen`` in ``myPC``. 
         Depends on `update_llrs` and `update_bits`.
 
         Parameters
@@ -25,11 +26,20 @@ class SCD:
         -------------
         **References:**
 
-        *  Vangala, H., Viterbo, & Yi Hong. (2014). Permuted successive cancellation decoder for polar codes. 2014 International Symposium on Information Theory and Its Applications, 438–442. IEICE.
+        We first propose a new decoding algorithm on a new decoder graph, where 
+        the various stages of the graph are permuted. We then observe that, even
+        though the usage of the permuted graph doesn't affect the encoder, it 
+        can significantly affect the decoding performance of a given polar code.
+        The new permuted successive cancellation decoder (PSCD) typically 
+        exhibits a performance degradation, since the polar code is optimized 
+        for the standard SCD.
+
+        *  Vangala, H., Viterbo, & Yi Hong. (2014). Permuted successive 
+        cancellation decoder for polar codes. 2014 International Symposium on 
+        Information Theory and Its Applications, 438-442. IEICE.
 
         """
 
-        # TODO: for l in range(self.myPC.N):
         # decode bits in natural order
         for l in [bit_reversed(i, self.myPC.n) for i in range(self.myPC.N)]:
             # evaluate tree of LLRs for root index i
