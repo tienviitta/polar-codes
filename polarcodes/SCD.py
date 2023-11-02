@@ -29,6 +29,7 @@ class SCD:
 
         """
 
+        # TODO: for l in range(self.myPC.N):
         # decode bits in natural order
         for l in [bit_reversed(i, self.myPC.n) for i in range(self.myPC.N)]:
             # evaluate tree of LLRs for root index i
@@ -61,7 +62,7 @@ class SCD:
                     self.L[j, s + 1] = lower_llr(btm_llr, top_llr, top_bit)
 
     def update_bits(self, l):
-        if l < self.myPC.N / 2:
+        if l < int(self.myPC.N / 2):
             return
 
         for s in range(self.myPC.n, self.myPC.n - active_bit_level(l, self.myPC.n), -1):
@@ -69,6 +70,6 @@ class SCD:
             branch_size = int(block_size / 2)
             for j in range(l, -1, -block_size):
                 if j % block_size >= branch_size:  # lower branch
-                    self.B[j - branch_size, s -
-                           1] = int(self.B[j, s]) ^ int(self.B[j - branch_size, s])
+                    self.B[j - branch_size, s - 1] = \
+                        int(self.B[j, s]) ^ int(self.B[j - branch_size, s])
                     self.B[j, s - 1] = self.B[j, s]

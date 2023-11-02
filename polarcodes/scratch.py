@@ -182,7 +182,7 @@ PASS: True
 """
 
 """
-The "chk" approximation: upper_llr_approx(top_llr, btm_llr)
+The "f_-(\alpha, \beta)" approximation: upper_llr_approx(top_llr, btm_llr)
 
 Design SNR: 0.0 dB
 
@@ -192,17 +192,9 @@ test_polar_nopunct.py -M 8 -K 5
 N: 8
 M: 8
 K: 5
-Mothercode Construction: bb
+
 Ordered Bits (least reliable to most reliable): [0 4 2 1 6 5 3 7]
 Frozen Bits: [2 4 0]
-Puncturing Flag: False
-Puncturing Parameters: {punct_type: 
-                        punct_algorithm: 
-                        punct_set: []
-                        source_set: []
-                        update_frozen_flag: None}
- 
-
 
 The message is: [1 0 0 1 0]
 The coded message is: [0 1 1 0 1 0 1 0]
@@ -210,7 +202,7 @@ The log-likelihoods are: [ 0.1608 -2.054  -1.4566  0.5576  0.0231  1.9673 -1.745
 
 Order: l = [0, 4, 2, 6, 1, 5, 3, 7]
 
-j = 0, l = 0:
+l = 0:
 LLR = [[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 ,     nan,     nan,     nan],
        [-1.4566, -0.5576,     nan,     nan],
@@ -228,7 +220,7 @@ BIT = [[nan, nan, nan,  0.],
        [nan, nan, nan, nan],
        [nan, nan, nan, nan]])
 
-j = 1, l = 4:
+l = 4:
 LLR = [[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 ,     nan,     nan,     nan],
        [-1.4566, -0.5576,     nan,     nan],
@@ -246,7 +238,7 @@ BIT = [[nan, nan,  0.,  0.],
        [nan, nan, nan, nan],
        [nan, nan, nan, nan]])
 
-j = 2, l = 2:
+l = 2:
 LLR = [[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 ,     nan,     nan,     nan],
        [-1.4566, -0.5576, -0.7184,  0.7184],
@@ -264,7 +256,7 @@ BIT = [[nan, nan,  0.,  0.],
        [nan, nan, nan, nan],
        [nan, nan, nan, nan]])
 
-j = 3, l = 6:
+l = 6:
 LLR = [[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 ,     nan,     nan,     nan],
        [-1.4566, -0.5576, -0.7184,  0.7184],
@@ -282,7 +274,7 @@ BIT = [[nan,  1.,  0.,  0.],
        [nan,  1.,  1.,  1.],
        [nan, nan, nan, nan]])
 
-j = 4, l = 1:
+l = 1:
 LLR = [[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 , -2.2148, -2.0141, -1.9442],
        [-1.4566, -0.5576, -0.7184,  0.7184],
@@ -300,7 +292,7 @@ BIT = [[nan,  1.,  0.,  0.],
        [nan,  1.,  1.,  1.],
        [nan, nan, nan, nan]])
 
-j = 5, l = 5:
+l = 5:
 LLR = [[ 0.1608, -0.1608,  0.1608, -0.0231],
        [-2.054 , -2.2148, -2.0141, -1.9442],
        [-1.4566, -0.5576, -0.7184,  0.7184],
@@ -354,9 +346,9 @@ BIT = [[0., 1., 0., 0.],
        [1., 1., 1., 1.],
        [0., 0., 0., 0.]])
 
-self.x_noisy: array([0, 1, 0, 0, 0, 0, 1, 0])
+x: array([0, 1, 0, 0, 0, 0, 1, 0])
 
-myPC.message_received: array([1, 0, 0, 1, 0])
+mmsg: array([1, 0, 0, 1, 0])
 
 The decoded message is: [1 0 0 1 0]
 PASS: True
