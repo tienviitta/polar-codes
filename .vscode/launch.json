@@ -5,6 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug: test_polar_3gpp_nopunct",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}/test_polar_3gpp_nopunct.py",
+            "args": [
+                "-A",
+                "12",
+                "-E",
+                "48",
+                "-N",
+                "15.0"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Debug: test_polar_nopunct",
             "type": "python",
             "request": "launch",
