@@ -491,6 +491,1000 @@ llrs =
          0         0         0         0         0         0       Inf
          0         0         0         0         0         0       Inf
          0         0         0         0         0         0       Inf
-         
+
+
+
+
+L:
+[[  0.       0.       0.      68.5216]
+ [  0.       0.       0.     -66.4269]
+ [  0.       0.       0.     -80.2177]
+ [  0.       0.       0.      50.4733]
+ [  0.       0.       0.     -49.6131]
+ [  0.       0.       0.      61.2974]
+ [  0.       0.       0.      64.5863]
+ [  0.       0.       0.     -74.9899]]
+L:
+[[  49.6131   49.6131  -49.6131   68.5216]
+ [ 100.0864   50.4733  -61.2974  -66.4269]
+ [ 111.7707 -114.1994  -64.5863  -80.2177]
+ [-225.9701 -111.7707  -50.4733   50.4733]
+ [ 118.1347 -118.1347 -118.1347  -49.6131]
+ [-243.5979 -125.4632  127.7243   61.2974]
+ [-253.1875  262.9387  144.8039   64.5863]
+ [-516.1262 -253.1875 -125.4632  -74.9899]]
+Traceback (most recent call last):
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 195, in <module>
+    main(args.length)
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 188, in main
+    u_hat = np.int((1-np.sign(L[:, 0]))//2)
+            ^^^^^^
+  File "/home/peva/miniforge3/envs/pynr-env/lib/python3.11/site-packages/numpy/__init__.py", line 324, in __getattr__
+    raise AttributeError(__former_attrs__[attr])
+AttributeError: module 'numpy' has no attribute 'int'.
+`np.int` was a deprecated alias for the builtin `int`. To avoid this error in existing code, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations. Did you mean: 'inf'?
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:35:31  peva 
+ 1 ❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 58797 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.0834 -1.0503 -1.2684  0.7981 -0.7845  0.9692  1.0212 -1.1857], scale: 0.1778279410038923
+sbit:
+[ 68.5216 -66.4269 -80.2177  50.4733 -49.6131  61.2974  64.5863 -74.9899], norm: 0.03162277660168379
+L:
+[[  0.       0.       0.      68.5216]
+ [  0.       0.       0.     -66.4269]
+ [  0.       0.       0.     -80.2177]
+ [  0.       0.       0.      50.4733]
+ [  0.       0.       0.     -49.6131]
+ [  0.       0.       0.      61.2974]
+ [  0.       0.       0.      64.5863]
+ [  0.       0.       0.     -74.9899]]
+L:
+[[  49.6131   49.6131  -49.6131   68.5216]
+ [ 100.0864   50.4733  -61.2974  -66.4269]
+ [ 111.7707 -114.1994  -64.5863  -80.2177]
+ [-225.9701 -111.7707  -50.4733   50.4733]
+ [ 118.1347 -118.1347 -118.1347  -49.6131]
+ [-243.5979 -125.4632  127.7243   61.2974]
+ [-253.1875  262.9387  144.8039   64.5863]
+ [-516.1262 -253.1875 -125.4632  -74.9899]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0. 0. 0. 2. 0. 2. 2. 2.]
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:35:48  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 52015 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.0834 -1.0503 -1.2684  0.7981 -0.7845  0.9692  1.0212 -1.1857], scale: 0.1778279410038923
+sbit:
+[ 68.5216 -66.4269 -80.2177  50.4733 -49.6131  61.2974  64.5863 -74.9899], norm: 0.03162277660168379
+L:
+[[  0.       0.       0.      68.5216]
+ [  0.       0.       0.     -66.4269]
+ [  0.       0.       0.     -80.2177]
+ [  0.       0.       0.      50.4733]
+ [  0.       0.       0.     -49.6131]
+ [  0.       0.       0.      61.2974]
+ [  0.       0.       0.      64.5863]
+ [  0.       0.       0.     -74.9899]]
+L:
+[[  49.6131   49.6131  -49.6131   68.5216]
+ [ 100.0864   50.4733  -61.2974  -66.4269]
+ [ 111.7707 -114.1994  -64.5863  -80.2177]
+ [-225.9701 -111.7707  -50.4733   50.4733]
+ [ 118.1347 -118.1347 -118.1347  -49.6131]
+ [-243.5979 -125.4632  127.7243   61.2974]
+ [-253.1875  262.9387  144.8039   64.5863]
+ [-516.1262 -253.1875 -125.4632  -74.9899]]
+Traceback (most recent call last):
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 195, in <module>
+    main(args.length)
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 188, in main
+    u_hat = 1-np.sign(L[:, 0], dtype=int)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+numpy.core._exceptions._UFuncInputCastingError: Cannot cast ufunc 'sign' input from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:36:00  peva 
+ 1 ❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 51479 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.0834 -1.0503 -1.2684  0.7981 -0.7845  0.9692  1.0212 -1.1857], scale: 0.1778279410038923
+sbit:
+[ 68.5216 -66.4269 -80.2177  50.4733 -49.6131  61.2974  64.5863 -74.9899], norm: 0.03162277660168379
+L:
+[[  0.       0.       0.      68.5216]
+ [  0.       0.       0.     -66.4269]
+ [  0.       0.       0.     -80.2177]
+ [  0.       0.       0.      50.4733]
+ [  0.       0.       0.     -49.6131]
+ [  0.       0.       0.      61.2974]
+ [  0.       0.       0.      64.5863]
+ [  0.       0.       0.     -74.9899]]
+L:
+[[  49.6131   49.6131  -49.6131   68.5216]
+ [ 100.0864   50.4733  -61.2974  -66.4269]
+ [ 111.7707 -114.1994  -64.5863  -80.2177]
+ [-225.9701 -111.7707  -50.4733   50.4733]
+ [ 118.1347 -118.1347 -118.1347  -49.6131]
+ [-243.5979 -125.4632  127.7243   61.2974]
+ [-253.1875  262.9387  144.8039   64.5863]
+ [-516.1262 -253.1875 -125.4632  -74.9899]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 2 0 2 2 2]
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:36:40  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 59345 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.0834 -1.0503 -1.2684  0.7981 -0.7845  0.9692  1.0212 -1.1857], scale: 0.1778279410038923
+sbit:
+[ 68.5216 -66.4269 -80.2177  50.4733 -49.6131  61.2974  64.5863 -74.9899], norm: 0.03162277660168379
+L:
+[[  0.       0.       0.      68.5216]
+ [  0.       0.       0.     -66.4269]
+ [  0.       0.       0.     -80.2177]
+ [  0.       0.       0.      50.4733]
+ [  0.       0.       0.     -49.6131]
+ [  0.       0.       0.      61.2974]
+ [  0.       0.       0.      64.5863]
+ [  0.       0.       0.     -74.9899]]
+L:
+[[  49.6131   49.6131  -49.6131   68.5216]
+ [ 100.0864   50.4733  -61.2974  -66.4269]
+ [ 111.7707 -114.1994  -64.5863  -80.2177]
+ [-225.9701 -111.7707  -50.4733   50.4733]
+ [ 118.1347 -118.1347 -118.1347  -49.6131]
+ [-243.5979 -125.4632  127.7243   61.2974]
+ [-253.1875  262.9387  144.8039   64.5863]
+ [-516.1262 -253.1875 -125.4632  -74.9899]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:36:53  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 49425 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:37:03  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 46453 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.6626 -1.3996 -3.1316 -0.6041  0.7122  0.7553  1.1684 -2.475 ], scale: 1.4125375446227544
+sbit:
+[ 1.6666 -1.4029 -3.139  -0.6056  0.7138  0.7571  1.1712 -2.4809], norm: 1.9952623149688795
+L:
+[[ 0.      0.      0.      1.6666]
+ [ 0.      0.      0.     -1.4029]
+ [ 0.      0.      0.     -3.139 ]
+ [ 0.      0.      0.     -0.6056]
+ [ 0.      0.      0.      0.7138]
+ [ 0.      0.      0.      0.7571]
+ [ 0.      0.      0.      1.1712]
+ [ 0.      0.      0.     -2.4809]]
+L:
+[[ 0.6056 -0.7138  0.7138  1.6666]
+ [-1.3194 -0.6056 -0.7571 -1.4029]
+ [ 0.1516 -0.4573 -1.1712 -3.139 ]
+ [-0.6089 -0.1516  0.6056 -0.6056]
+ [ 0.9527 -0.9527 -0.9527  0.7138]
+ [-2.8281 -1.8753  2.16    0.7571]
+ [-4.0353  5.2629  4.3102  1.1712]
+ [-9.2983 -4.0353 -1.8753 -2.4809]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 1 0 1 0 1 1 1]
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:37:09  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 58733 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.6626 -1.3996 -3.1316 -0.6041  0.7122  0.7553  1.1684 -2.475 ], scale: 1.4125375446227544
+sbit:
+[ 1.6666 -1.4029 -3.139  -0.6056  0.7138  0.7571  1.1712 -2.4809], norm: 1.9952623149688795
+L:
+[[ 0.      0.      0.      1.6666]
+ [ 0.      0.      0.     -1.4029]
+ [ 0.      0.      0.     -3.139 ]
+ [ 0.      0.      0.     -0.6056]
+ [ 0.      0.      0.      0.7138]
+ [ 0.      0.      0.      0.7571]
+ [ 0.      0.      0.      1.1712]
+ [ 0.      0.      0.     -2.4809]]
+L:
+[[ 0.6056 -0.7138  0.7138  1.6666]
+ [-1.3194 -0.6056 -0.7571 -1.4029]
+ [ 0.1516 -0.4573 -1.1712 -3.139 ]
+ [-0.6089 -0.1516  0.6056 -0.6056]
+ [ 0.9527 -0.9527 -0.9527  0.7138]
+ [-2.8281 -1.8753  2.16    0.7571]
+ [-4.0353  5.2629  4.3102  1.1712]
+ [-9.2983 -4.0353 -1.8753 -2.4809]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 1 0 1 0 1 1 1]
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:37:16  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 37797 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:37:20  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 35273 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+PASS: True
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:38:00  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 52281 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.4691 -1.2829 -2.5091 -0.1356  0.2121  0.8268  1.1192 -2.0442], scale: 1.0
+sbit:
+[ 2.9382 -2.5657 -5.0181 -0.2713  0.4242  1.6536  2.2384 -4.0885], norm: 1.0
+L:
+[[ 0.      0.      0.      2.9382]
+ [ 0.      0.      0.     -2.5657]
+ [ 0.      0.      0.     -5.0181]
+ [ 0.      0.      0.     -0.2713]
+ [ 0.      0.      0.      0.4242]
+ [ 0.      0.      0.      1.6536]
+ [ 0.      0.      0.      2.2384]
+ [ 0.      0.      0.     -4.0885]]
+L:
+[[  0.2713  -0.4242   0.4242   2.9382]
+ [ -0.6955  -0.2713  -1.6536  -2.5657]
+ [  1.3823  -1.8142  -2.2384  -5.0181]
+ [ -3.1965  -1.3823   0.2713  -0.2713]
+ [  2.514   -2.514   -2.514    0.4242]
+ [ -6.3312  -3.8172   4.2193   1.6536]
+ [ -8.0365   9.7705   7.2565   2.2384]
+ [-17.807   -8.0365  -3.8172  -4.0885]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 1 0 1 0 1 1 1]
+PASS: False
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:38:09  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 37743 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3726 -1.2247 -2.1987  0.0979 -0.0372  0.8624  1.0947 -1.8295], scale: 0.7943282347242815
+sbit:
+[ 4.3509 -3.882  -6.9694  0.3104 -0.1179  2.7337  3.4699 -5.799 ], norm: 0.6309573444801932
+L:
+[[ 0.      0.      0.      4.3509]
+ [ 0.      0.      0.     -3.882 ]
+ [ 0.      0.      0.     -6.9694]
+ [ 0.      0.      0.      0.3104]
+ [ 0.      0.      0.     -0.1179]
+ [ 0.      0.      0.      2.7337]
+ [ 0.      0.      0.      3.4699]
+ [ 0.      0.      0.     -5.799 ]]
+L:
+[[  0.1179   0.1179  -0.1179   4.3509]
+ [  0.4283   0.3104  -2.7337  -3.882 ]
+ [  3.0441  -3.5878  -3.4699  -6.9694]
+ [ -6.6319  -3.0441  -0.3104   0.3104]
+ [  4.4688  -4.4688  -4.4688  -0.1179]
+ [-10.5783  -6.1095   6.6157   2.7337]
+ [-12.7251  14.9081  10.4393   3.4699]
+ [-27.6332 -12.7251  -6.1095  -5.799 ]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+PASS: True
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:38:19  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 40205 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+PASS: True
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:40:25  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 43677 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+PASS: True
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:41:33  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 47257 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+Traceback (most recent call last):
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 193, in <module>
+    main(args.length)
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 179, in main
+    L[i + i_b, l+1], L[i + i_b + s_block, l+1])
+                     ~^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index 8 is out of bounds for axis 0 with size 8
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:41:44  peva 
+ 1 ❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 40993 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+Traceback (most recent call last):
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 193, in <module>
+    main(args.length)
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 179, in main
+    L[i + i_b, l+1], L[i + i_b + s_block, l+1])
+                     ~^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index 8 is out of bounds for axis 0 with size 8
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:42:18  peva 
+ 1 ❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 38651 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+PASS: True
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:42:24  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 58745 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 2, B: 0
+  i: 0, a_llr: 2, s_block: 2, B: 0
+  i: 0, a_llr: 2, s_block: 1, B: 0
+  i: 1, a_llr: 0, s_block: 1, B: 1
+  i: 2, a_llr: 1, s_block: 2, B: 1
+  i: 2, a_llr: 1, s_block: 2, B: 1
+  i: 2, a_llr: 1, s_block: 1, B: 0
+  i: 3, a_llr: 0, s_block: 1, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 1
+  i: 4, a_llr: 2, s_block: 2, B: 0
+  i: 4, a_llr: 2, s_block: 2, B: 0
+  i: 4, a_llr: 2, s_block: 1, B: 0
+  i: 5, a_llr: 0, s_block: 1, B: 1
+  i: 6, a_llr: 1, s_block: 2, B: 1
+  i: 6, a_llr: 1, s_block: 2, B: 1
+  i: 6, a_llr: 1, s_block: 1, B: 0
+  i: 7, a_llr: 0, s_block: 1, B: 1
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+PASS: True
+  master U:2 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:43:47  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 43959 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 2, B: 0
+  i: 0, a_llr: 2, s_block: 2, B: 0
+  i: 0, a_llr: 2, s_block: 1, B: 0
+  i: 1, a_llr: 0, s_block: 1, B: 1
+  i: 2, a_llr: 1, s_block: 2, B: 1
+  i: 2, a_llr: 1, s_block: 2, B: 1
+  i: 2, a_llr: 1, s_block: 1, B: 0
+  i: 3, a_llr: 0, s_block: 1, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 0
+Traceback (most recent call last):
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 195, in <module>
+    main(args.length)
+  File "/home/peva/work/repos/polar-codes/test_polar.py", line 181, in main
+    L[i + i_b, l+1], L[i + i_b + s_block, l+1])
+                     ~^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: index 8 is out of bounds for axis 0 with size 8
+  master U:3 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:45:46  peva 
+ 1 ❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 52815 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 4, B: 0
+  i: 0, a_llr: 2, s_block: 2, B: 0
+  i: 0, a_llr: 2, s_block: 2, B: 0
+  i: 0, a_llr: 2, s_block: 1, B: 0
+  i: 1, a_llr: 0, s_block: 1, B: 1
+  i: 2, a_llr: 1, s_block: 2, B: 1
+  i: 2, a_llr: 1, s_block: 2, B: 1
+  i: 2, a_llr: 1, s_block: 1, B: 0
+  i: 3, a_llr: 0, s_block: 1, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 1
+  i: 4, a_llr: 2, s_block: 4, B: 1
+  i: 4, a_llr: 2, s_block: 2, B: 0
+  i: 4, a_llr: 2, s_block: 2, B: 0
+  i: 4, a_llr: 2, s_block: 1, B: 0
+  i: 5, a_llr: 0, s_block: 1, B: 1
+  i: 6, a_llr: 1, s_block: 2, B: 1
+  i: 6, a_llr: 1, s_block: 2, B: 1
+  i: 6, a_llr: 1, s_block: 1, B: 0
+  i: 7, a_llr: 0, s_block: 1, B: 1
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+PASS: True
+  master U:3 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:46:59  peva 
+❯  cd /home/peva/work/repos/polar-codes ; /usr/bin/env /home/peva/miniforge3/envs/pynr-env/bin/python /home/peva/.vscode/extensions/ms-python.python-2023.20.0/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher 43587 -- /home/peva/work/repos/polar-codes/test_polar.py -N 8 
+Polar: N:8, n:3
+a:
+[1 1 1 1]
+u:
+[0 0 0 1 0 1 1 1]
+s:
+[[0 0 1 0]
+ [0 0 1 1]
+ [0 1 1 1]
+ [1 1 1 0]
+ [0 1 1 1]
+ [1 1 0 0]
+ [1 0 0 0]
+ [1 1 1 1]]
+x:
+[0 1 1 0 1 0 0 1]
+y:
+[ 1.3321 -1.2003 -2.0683  0.196  -0.1419  0.8774  1.0844 -1.7393], scale: 0.7079457843841379
+sbit:
+[ 5.3158 -4.7896 -8.2537  0.7823 -0.5662  3.5012  4.3273 -6.9406], norm: 0.5011872336272722
+L:
+[[ 0.      0.      0.      5.3158]
+ [ 0.      0.      0.     -4.7896]
+ [ 0.      0.      0.     -8.2537]
+ [ 0.      0.      0.      0.7823]
+ [ 0.      0.      0.     -0.5662]
+ [ 0.      0.      0.      3.5012]
+ [ 0.      0.      0.      4.3273]
+ [ 0.      0.      0.     -6.9406]]
+  i: 0, l: 2, s_block: 4, B: 0
+  i: 0, l: 2, s_block: 4, B: 0
+  i: 0, l: 2, s_block: 4, B: 0
+  i: 0, l: 2, s_block: 4, B: 0
+  i: 0, l: 1, s_block: 2, B: 0
+  i: 0, l: 1, s_block: 2, B: 0
+  i: 0, l: 0, s_block: 1, B: 0
+  i: 1, l: 0, s_block: 1, B: 1
+  i: 2, l: 1, s_block: 2, B: 1
+  i: 2, l: 1, s_block: 2, B: 1
+  i: 2, l: 0, s_block: 1, B: 0
+  i: 3, l: 0, s_block: 1, B: 1
+  i: 4, l: 2, s_block: 4, B: 1
+  i: 4, l: 2, s_block: 4, B: 1
+  i: 4, l: 2, s_block: 4, B: 1
+  i: 4, l: 2, s_block: 4, B: 1
+  i: 4, l: 1, s_block: 2, B: 0
+  i: 4, l: 1, s_block: 2, B: 0
+  i: 4, l: 0, s_block: 1, B: 0
+  i: 5, l: 0, s_block: 1, B: 1
+  i: 6, l: 1, s_block: 2, B: 1
+  i: 6, l: 1, s_block: 2, B: 1
+  i: 6, l: 0, s_block: 1, B: 0
+  i: 7, l: 0, s_block: 1, B: 1
+L:
+[[  0.5662   0.5662  -0.5662   5.3158]
+ [  1.3485   0.7823  -3.5012  -4.7896]
+ [  4.2835  -4.8935  -4.3273  -8.2537]
+ [ -9.177   -4.2835  -0.7823   0.7823]
+ [  5.882   -5.882   -5.882   -0.5662]
+ [-13.6049  -7.7228   8.2908   3.5012]
+ [-16.0137  18.463   12.581    4.3273]
+ [-34.4767 -16.0137  -7.7228  -6.9406]]
+u:
+[0 0 0 1 0 1 1 1]
+u_hat:
+[0 0 0 1 0 1 1 1]
+PASS: True
+  master U:3 ?:1  ❲c❳ pynr-env  ~/work/repos/polar-codes                                                                                                      15:47:13  peva 
+❯          
 """
 ...

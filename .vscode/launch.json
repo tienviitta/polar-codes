@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug: test_polar",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}/test_polar.py",
+            "args": [
+                "-N",
+                "8"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Debug: test_polar_3gpp_nopunct",
             "type": "python",
             "request": "launch",
