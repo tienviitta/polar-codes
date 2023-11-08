@@ -49,6 +49,23 @@ def active_llr_level(i, n):
     return k
 
 
+def active_bit_level(i, n):
+    """
+        Find the first 0 in the binary expansion of i.
+    """
+
+    mask = 2**(n-1)
+    # count = 1
+    for k in range(n):
+        if (mask ^ (i & mask)) == 0:
+            # count += 1
+            mask >>= 1
+        else:
+            break
+    # return min(count, n)
+    return k
+
+
 def upper_llr_approx(l1, l2):
     """
     Update top branch LLR in the log-domain (approximation).
@@ -79,7 +96,7 @@ def upper_llr_approx(l1, l2):
         return np.sign(l1) * np.sign(l2) * np.min((np.abs(l1), np.abs(l2)))
 
 
-def lower_llr(b, l1, l2):
+def lower_llr(b, l2, l1):
     """
     Update bottom branch LLR in the log-domain.
     This function supports shortening by checking for infinite LLR cases.
@@ -106,7 +123,8 @@ def lower_llr(b, l1, l2):
             return l1 + l2
     elif b == 1:  # principal decoding equation
         return l1 - l2
-    return np.nan
+    else:
+        return np.nan
 
 
 def main(N):
@@ -115,7 +133,7 @@ def main(N):
     print("Polar: N:{}, n:{}".format(N, n))
 
     # Random seed
-    np.random.seed(123456)
+    np.random.seed(654321)
 
     # Polar sequence (TODO: Now fixed for N=8!)
     Q_N = np.array([0, 1, 2, 4, 3, 5, 6, 7], dtype=int)
@@ -151,7 +169,7 @@ def main(N):
     print("x:\n{}".format(x))
 
     # AWGN
-    EsN0dB = 7
+    EsN0dB = 3
     scale = 10**(-EsN0dB / 20)
     awgn = np.random.randn(N)
     y = (1.0 - 2.0 * x) + (scale * awgn)
@@ -166,8 +184,12 @@ def main(N):
     L = np.zeros((N, n+1), dtype=float)
     L[:, n] = sbit
     print("L:\n{}".format(L))
+    s_hat = -np.ones((N, n+1), dtype=int)
+    print("s_hat:\n{}".format(s_hat))
     for i in np.arange(N, dtype=int):
         a_llr = active_llr_level(bit_reversed(i, n), n)
+        a_bit = active_bit_level(bit_reversed(i, n), n)
+        # print("a_llr: {}, a_bit: {}".format(a_llr, a_bit))
         for l in np.arange(a_llr, -1, -1):
             s_block = 1 << l
             for i_b in np.arange(s_block):
@@ -183,12 +205,14 @@ def main(N):
                 else:
                     L[i + i_b, l] = \
                         lower_llr(
-                            s[i + i_b - s_block, l], L[i + i_b, l+1], L[i + i_b - s_block, l+1])
+                            s[i + i_b - s_block, l], L[i + i_b - s_block, l+1], L[i + i_b, l+1])
+
     print("L:\n{}".format(L))
     u_hat = np.array((1-np.sign(L[:, 0]))//2, dtype=int)
     print("u:\n{}".format(u))
     print("u_hat:\n{}".format(u_hat))
     print("PASS: {}".format(np.all(u_hat == u)))
+    print("SYMS: {}".format(np.all(np.sign(sbit) == (1.0 - 2.0 * x))))
 
 
 if __name__ == "__main__":
