@@ -109,9 +109,10 @@ def lower_llr(b, l2, l1):
     if b == 0:  # check for infinite LLRs, used in shortening
         if l1 == np.inf or l2 == np.inf:
             return np.inf
-        else:  # principal decoding equation
+        else:  # TODO: principal decoding equation - this is propably OK?!
             return l1 + l2
-    elif b == 1:  # principal decoding equation
+    elif b == 1:  # TODO: principal decoding equation - this is NOT OK?!
+        # TODO: Should be "g(b, l1, l2) = (-1)^b * l1 + l2"!
         return l1 - l2
     else:
         return np.nan
@@ -185,7 +186,7 @@ def main(N):
     L[:, n] = sbit
     print("L:\n{}".format(L))
     s_hat = -np.ones((N, n), dtype=int)
-    print("s_hat:\n{}".format(s_hat))
+    # print("s_hat:\n{}".format(s_hat))
     for i in np.arange(N, dtype=int):
         a_llr = active_llr_level(bit_reversed(i, n), n)
         a_bit = active_bit_level(bit_reversed(i, n), n)
@@ -220,7 +221,7 @@ def main(N):
                 s_hat[i - i_b - s_block, l+1] = \
                     s_hat[i - i_b - s_block, l] ^ s_hat[i - i_b, l]
                 s_hat[i - i_b, l+1] = s_hat[i - i_b, l]
-            print("  i: {}, l: {}, s_block: {}".format(i, l, s_block))
+            # print("  i: {}, l: {}, s_block: {}".format(i, l, s_block))
 
     print("L:\n{}".format(L))
     print("s_hat:\n{}".format(s_hat))
