@@ -24,7 +24,6 @@ def bit_reversed(x, n):
         bit-reversed version of x
 
     """
-
     result = 0
     for i in range(n):  # for each bit number
         if (x & (1 << i)):  # if it matches that bit
@@ -36,16 +35,12 @@ def active_llr_level(i, n):
     """
         Find the first 1 in the binary expansion of i.
     """
-
     mask = 2**(n-1)
-    # count = 1
     for k in range(n):
         if (mask & i) == 0:
-            # count += 1
             mask >>= 1
         else:
             break
-    # return min(count, n)
     return k
 
 
@@ -53,16 +48,12 @@ def active_bit_level(i, n):
     """
         Find the first 0 in the binary expansion of i.
     """
-
     mask = 2**(n-1)
-    # count = 1
     for k in range(n):
         if (mask ^ (i & mask)) == 0:
-            # count += 1
             mask >>= 1
         else:
             break
-    # return min(count, n)
     return k
 
 
@@ -84,7 +75,6 @@ def upper_llr_approx(l1, l2):
         the top branch LLR at the next stage of the decoding tree
 
     """
-
     # check for infinite LLR, used in shortening
     if l1 == np.inf and l2 != np.inf:
         return l2
@@ -96,6 +86,7 @@ def upper_llr_approx(l1, l2):
         return np.sign(l1) * np.sign(l2) * np.min((np.abs(l1), np.abs(l2)))
 
 
+# TODO: The order of these inputs are changed!
 def lower_llr(b, l2, l1):
     """
     Update bottom branch LLR in the log-domain.
@@ -115,7 +106,6 @@ def lower_llr(b, l2, l1):
     float, np.nan
         the bottom branch LLR at the next stage of the decoding tree
     """
-
     if b == 0:  # check for infinite LLRs, used in shortening
         if l1 == np.inf or l2 == np.inf:
             return np.inf
@@ -125,6 +115,16 @@ def lower_llr(b, l2, l1):
         return l1 - l2
     else:
         return np.nan
+
+
+def hard_decision(y):
+    """
+        Hard decision of a log-likelihood.
+    """
+    if y >= 0:
+        return 0
+    else:
+        return 1
 
 
 def main(N):
@@ -184,12 +184,12 @@ def main(N):
     L = np.zeros((N, n+1), dtype=float)
     L[:, n] = sbit
     print("L:\n{}".format(L))
-    s_hat = -np.ones((N, n+1), dtype=int)
+    s_hat = -np.ones((N, n), dtype=int)
     print("s_hat:\n{}".format(s_hat))
     for i in np.arange(N, dtype=int):
         a_llr = active_llr_level(bit_reversed(i, n), n)
         a_bit = active_bit_level(bit_reversed(i, n), n)
-        # print("a_llr: {}, a_bit: {}".format(a_llr, a_bit))
+        # LLR computation
         for l in np.arange(a_llr, -1, -1):
             s_block = 1 << l
             for i_b in np.arange(s_block):
@@ -203,11 +203,27 @@ def main(N):
                         upper_llr_approx(
                             L[i + i_b, l+1], L[i + i_b + s_block, l+1])
                 else:
+                    # TODO: Order of inputs has been changed?! Bug in original?!
+                    # L[i + i_b, l] = \
+                    #     lower_llr(
+                    #         s[i + i_b - s_block, l], L[i + i_b - s_block, l+1], L[i + i_b, l+1])
                     L[i + i_b, l] = \
                         lower_llr(
-                            s[i + i_b - s_block, l], L[i + i_b - s_block, l+1], L[i + i_b, l+1])
+                            s_hat[i + i_b - s_block, l], L[i + i_b - s_block, l+1], L[i + i_b, l+1])
+        # Hard decision
+        s_hat[i, 0] = hard_decision(L[i, 0])
+        # print("a_llr: {}, a_bit: {}, B: {}".format(a_llr, a_bit, B))
+        # Partial sum computation
+        for l in np.arange(a_bit):
+            s_block = 1 << l
+            for i_b in np.arange(s_block):
+                s_hat[i - i_b - s_block, l+1] = \
+                    s_hat[i - i_b - s_block, l] ^ s_hat[i - i_b, l]
+                s_hat[i - i_b, l+1] = s_hat[i - i_b, l]
+            print("  i: {}, l: {}, s_block: {}".format(i, l, s_block))
 
     print("L:\n{}".format(L))
+    print("s_hat:\n{}".format(s_hat))
     u_hat = np.array((1-np.sign(L[:, 0]))//2, dtype=int)
     print("u:\n{}".format(u))
     print("u_hat:\n{}".format(u_hat))
