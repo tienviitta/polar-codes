@@ -12,7 +12,13 @@
             "program": "${workspaceFolder}/test_polar.py",
             "args": [
                 "-N",
-                "8"
+                "8",
+                "-K",
+                "4",
+                "-E",
+                "-3",
+                "-S",
+                "7"
             ],
             "console": "integratedTerminal"
         },
