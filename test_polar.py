@@ -217,6 +217,7 @@ def main(N, K, EsN0dB, seed=0):
     # DUMMY: Get the information bit pattern.
     Q_I = np.ones(N, dtype=int)
     Q_I[Q_N < K] = 0
+    print("Q_I: {}".format(Q_I))
 
     # Info bits
     n_a = np.sum(Q_I)
@@ -232,7 +233,6 @@ def main(N, K, EsN0dB, seed=0):
     s = np.zeros((N, n+1), dtype=int)
     s[:, 0] = u
     for l in np.arange(n, dtype=int):
-        n_block = N >> (l+1)
         s_block = 1 << l
         i_step = 1 << (l+1)
         for i_block in np.arange(0, N, i_step, dtype=int):
