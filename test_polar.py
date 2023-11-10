@@ -1,7 +1,8 @@
 import numpy as np
 import argparse
 
-np.set_printoptions(precision=4, suppress=True)
+# np.set_printoptions(precision=4, suppress=True)
+np.set_printoptions(precision=2)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-N", "--l_enc", type=int)
@@ -258,10 +259,14 @@ def main(N, K, EsN0dB, seed=0):
     # Polar decoding (TODO: Partial sum!)
     L = np.zeros((N, n+1), dtype=float)
     L[:, n] = sbit
-    print("L:\n{}".format(L))
+    # print("L:\n{}".format(L))
     s_hat = -np.ones((N, n), dtype=int)
     # print("s_hat:\n{}".format(s_hat))
     for i in np.arange(N, dtype=int):
+
+        # Print L and s_hat
+        print("L{}:\n{}".format(i-1, L))
+        print("s{}_hat:\n{}".format(i-1, s_hat))
 
         # LLR and bit levels
         a_llr = active_llr_level(bit_reversed(i, n), n)
