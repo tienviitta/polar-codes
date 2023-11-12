@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": false,
-            "program": "${workspaceFolder}/test_polar.py",
+            "program": "${workspaceFolder}/test_polar_scd.py",
             "args": [
                 "-N",
                 "8",
@@ -27,7 +27,7 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": false,
-            "program": "${workspaceFolder}/test_polar.py",
+            "program": "${workspaceFolder}/test_polar_scd.py",
             "args": [
                 "-N",
                 "8",
@@ -45,7 +45,7 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": false,
-            "program": "${workspaceFolder}/test_polar.py",
+            "program": "${workspaceFolder}/test_polar_scd.py",
             "args": [
                 "-N",
                 "16",
@@ -63,7 +63,7 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": false,
-            "program": "${workspaceFolder}/test_polar.py",
+            "program": "${workspaceFolder}/test_polar_scd.py",
             "args": [
                 "-N",
                 "16",
