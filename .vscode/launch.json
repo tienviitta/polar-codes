@@ -23,6 +23,24 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "Debug: PC(8,5)",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}/test_polar.py",
+            "args": [
+                "-N",
+                "8",
+                "-K",
+                "5",
+                "-E",
+                "6",
+                "-S",
+                "9"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Debug: PC(16,8)",
             "type": "python",
             "request": "launch",
@@ -37,6 +55,24 @@
                 "0",
                 "-S",
                 "7"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug: PC(16,10)",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}/test_polar.py",
+            "args": [
+                "-N",
+                "16",
+                "-K",
+                "10",
+                "-E",
+                "3",
+                "-S",
+                "9"
             ],
             "console": "integratedTerminal"
         },

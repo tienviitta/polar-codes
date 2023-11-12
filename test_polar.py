@@ -122,6 +122,38 @@ def lower_llr(b, l2, l1):
         return np.nan
 
 
+def lower_llr_fix(b, l1, l2):
+    """
+    Update bottom branch LLR in the log-domain.
+    This function supports shortening by checking for infinite LLR cases.
+
+    Parameters
+    ----------
+    b: int
+        the decoded bit of the top branch
+    l1: float
+        input LLR corresponding to the top branch
+    l2: float
+        input LLR corresponding to the bottom branch
+
+    Returns
+    ----------
+    float, np.nan
+        the bottom branch LLR at the next stage of the decoding tree
+    """
+    if b == 0:  # check for infinite LLRs, used in shortening
+        if l1 == np.inf or l2 == np.inf:
+            return np.inf
+        else:
+            # g(b, l1, l2) = (-1)^b * l1 + l2
+            return l1 + l2
+    elif b == 1:
+        # g(b, l1, l2) = (-1)^b * l1 + l2
+        return -l1 + l2
+    else:
+        return np.nan
+
+
 def hard_decision(y):
     """
         Hard decision of a log-likelihood.
@@ -217,7 +249,8 @@ def main(N, K, EsN0dB, seed=0):
 
     # DUMMY: Get the information bit pattern.
     Q_I = np.ones(N, dtype=int)
-    Q_I[Q_N < K] = 0
+    F = N - K
+    Q_I[Q_N < F] = 0
     print("Q_I: {}".format(Q_I))
 
     # Info bits
@@ -264,9 +297,9 @@ def main(N, K, EsN0dB, seed=0):
     # print("s_hat:\n{}".format(s_hat))
     for i in np.arange(N, dtype=int):
 
-        # Print L and s_hat
-        print("L{}:\n{}".format(i-1, L))
-        print("s{}_hat:\n{}".format(i-1, s_hat))
+        # # Print L and s_hat
+        # print("L{}:\n{}".format(i-1, L))
+        # print("s{}_hat:\n{}".format(i-1, s_hat))
 
         # LLR and bit levels
         a_llr = active_llr_level(bit_reversed(i, n), n)
@@ -286,12 +319,12 @@ def main(N, K, EsN0dB, seed=0):
                         upper_llr_approx(
                             L[i + i_b, l+1], L[i + i_b + s_block, l+1])
                 else:
-                    # TODO: Order of inputs has been changed?! Bug in original?!
+                    # Note! Bug in original?!
                     # L[i + i_b, l] = \
                     #     lower_llr(
                     #         s[i + i_b - s_block, l], L[i + i_b - s_block, l+1], L[i + i_b, l+1])
                     L[i + i_b, l] = \
-                        lower_llr(
+                        lower_llr_fix(
                             s_hat[i + i_b - s_block, l], L[i + i_b - s_block, l+1], L[i + i_b, l+1])
 
         # Decision
