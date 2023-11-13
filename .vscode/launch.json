@@ -5,11 +5,29 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug: PC(8,4)",
+            "name": "Debug: SCD PC(8,4)",
             "type": "python",
             "request": "launch",
             "stopOnEntry": false,
             "program": "${workspaceFolder}/test_polar_scd.py",
+            "args": [
+                "-N",
+                "8",
+                "-K",
+                "4",
+                "-E",
+                "-3",
+                "-S",
+                "7"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug: SCDL PC(8,4)",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": false,
+            "program": "${workspaceFolder}/test_polar_scld.py",
             "args": [
                 "-N",
                 "8",
