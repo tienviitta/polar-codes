@@ -1,7 +1,7 @@
 import numpy as np
 import argparse
 
-import polarcodes.SCDPM as PC
+import polarcodes.SCLD as PC
 
 np.set_printoptions(precision=2, suppress=True)
 # np.set_printoptions(precision=2)
@@ -24,7 +24,7 @@ def main(N, K, EsN0dB, seed=0):
     np.random.seed(seed)
 
     # SCD for Polar codes PC(N, K)
-    m_scld = PC.SCDPM(N, K)
+    m_scld = PC.SCLD(N, K, L=4)
 
     # Info bits
     a = np.random.randint(2, size=K)
@@ -49,9 +49,9 @@ def main(N, K, EsN0dB, seed=0):
     a_hat = m_scld.decode(sbit)
 
     # Results
-    print("L:\n{}".format(m_scld.L))
-    print("s_hat:\n{}".format(m_scld.s_hat))
-    print("PM: {:.2f}".format(m_scld.PM))
+    print("L:\n{}".format(m_scld.LLR))
+    print("s_hat:\n{}".format(m_scld.BIT))
+    print("PM: {}".format(m_scld.PM))
     print("SYMS: {}".format(np.all(np.sign(sbit) == (1.0 - 2.0 * x))))
     print("a:\n{}".format(a))
     print("a_hat:\n{}".format(a_hat))
