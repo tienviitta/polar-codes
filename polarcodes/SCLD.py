@@ -18,12 +18,9 @@ class SCLD:
         self.Q_I[self.Q_N < self.F] = 0
         print("Q_I: {}".format(self.Q_I))
         # LLRs and partial sums
-        self.LLR = np.zeros((self.N, self.n+1, self.L), dtype=float)
-        self.BIT = np.zeros((self.N, self.n, self.L), dtype=int)
-        self.PM = np.zeros(self.L, float)
-        # List decoding
-        self.active = np.zeros(self.L, bool)
-        self.active[0] = True
+        self.LLR = np.zeros((self.L, self.N, self.n+1), dtype=float)
+        self.BIT = np.zeros((self.L, self.N, self.n), dtype=int)
+        self.PM = np.zeros(self.L << 1, dtype=float)
 
     def encode(self, a):
         """
@@ -75,50 +72,31 @@ class SCLD:
 
         """
         # Polar decoding
-        self.LLR[:, self.n, 0] = sbit
+        self.LLR[0, :, self.n] = sbit
         for i in np.arange(self.N, dtype=int):
+            print("----------\nm: {}".format(i))
             # LLR and bit levels
             a_llr = active_llr_level(bit_reversed(i, self.n), self.n)
             a_bit = active_bit_level(bit_reversed(i, self.n), self.n)
-            for m in np.arange(self.L):
-                # Active decoder
-                if not self.active[m]:
-                    break
-                # LLR computation
-                self.update_llrs(i, a_llr, m)
-            for m in np.arange(self.L):
-                # Active decoder
-                if not self.active[m]:
-                    break
-                # Decision
-                if self.Q_I[i] == 0:
-                    # Frozen bit
-                    self.BIT[i, 0, m] = 0
-                    self.update_pm_hwf(i, 0, m)
-                    # Partial sum computation
-                    self.update_bits(i, a_bit, m)
-                else:
-                    # Info bit
-                    # TODO: Next decoder?!
-                    self.LLR[:, :, 1] = np.copy(self.LLR[:, :, m])
-                    self.BIT[:, :, 1] = np.copy(self.BIT[:, :, m])
-                    self.PM[1] = np.copy(self.PM[m])
-                    self.BIT[i, 0, m] = 0
-                    self.update_pm_hwf(i, 0, m)
-                    self.BIT[i, 0, 1] = 1
-                    self.update_pm_hwf(i, 0, 1)
-                    self.active[1] = True
-            for m in np.arange(self.L):
-                # Active decoder
-                if not self.active[m]:
-                    break
-                # Partial sum computation
-                self.update_bits(i, a_bit, m)
+            # LLR computation
+            self.update_llrs(i, a_llr)
+            # Decision
+            if self.Q_I[i] == 0:
+                # Frozen bit
+                self.BIT[0, i, 0] = 0
+            else:
+                # Hard decision
+                self.BIT[0, i, 0] = hard_decision(self.LLR[0, i, 0])
+            # Partial sum computation
+            self.update_bits(i, a_bit)
+            print("L:\n{}".format(self.LLR))
+            print("s_hat:\n{}".format(self.BIT))
             print("PM: {}".format(self.PM))
-        a_hat = self.BIT[self.Q_I == 1, 0, 0]
+            print("----------")
+        a_hat = self.BIT[0, self.Q_I == 1, 0]
         return a_hat
 
-    def update_llrs(self, i, a_llr, m):
+    def update_llrs(self, i, a_llr):
         """
         LLR computations
 
@@ -128,8 +106,6 @@ class SCLD:
             bit index
         a_llr: int
             LLR level index
-        m: int
-            list index
 
         Returns
         ----------
@@ -141,19 +117,19 @@ class SCLD:
                 B = (i >> l) & 1
                 if B == 0:
                     # Upper (f)
-                    self.LLR[i + i_b, l, m] = \
+                    self.LLR[0, i + i_b, l] = \
                         upper_llr_approx(
-                            self.LLR[i + i_b, l+1, m],
-                            self.LLR[i + i_b + s_block, l+1, m])
+                            self.LLR[0, i + i_b, l+1],
+                            self.LLR[0, i + i_b + s_block, l+1])
                 else:
                     # Lower (g)
-                    self.LLR[i + i_b, l, m] = \
+                    self.LLR[0, i + i_b, l] = \
                         lower_llr(
-                            self.BIT[i + i_b - s_block, l, m],
-                            self.LLR[i + i_b - s_block, l+1, m],
-                            self.LLR[i + i_b, l+1, m])
+                            self.BIT[0, i + i_b - s_block, l],
+                            self.LLR[0, i + i_b - s_block, l+1],
+                            self.LLR[0, i + i_b, l+1])
 
-    def update_bits(self, i, a_bit, m):
+    def update_bits(self, i, a_bit):
         """
         Partial sum computations
 
@@ -167,17 +143,15 @@ class SCLD:
         Returns
         ----------
         """
-        # self.update_pm_hwf(i, 0)
+        self.update_pm_hwf(i, 0)
         for l in np.arange(a_bit):
             s_block = 1 << l
             for i_b in np.arange(s_block):
-                self.BIT[i - i_b - s_block, l+1, m] = \
-                    self.BIT[i - i_b - s_block, l, m] ^ self.BIT[i - i_b, l, m]
-                # self.update_pm_hwf(i - i_b - s_block, l+1)
-                self.BIT[i - i_b, l+1, m] = self.BIT[i - i_b, l, m]
-                # self.update_pm_hwf(i - i_b, l+1)
+                self.BIT[0, i - i_b - s_block, l+1] = \
+                    self.BIT[0, i - i_b - s_block, l] ^ self.BIT[0, i - i_b, l]
+                self.BIT[0, i - i_b, l+1] = self.BIT[0, i - i_b, l]
 
-    def update_pm_hwf(self, i, l, m):
+    def update_pm_hwf(self, i, l):
         """
         Path-metric update (HW friendly)
 
@@ -191,9 +165,8 @@ class SCLD:
         Returns
         ----------
         """
-        self.PM[m] += (
-            np.sign(self.LLR[i, l, m]) * self.LLR[i, l, m] -
-            ((1 - 2 * self.BIT[i, l, m]) * self.LLR[i, l, m]))
+        self.PM[0] += (
+            np.sign(self.LLR[0, i, l]) * self.LLR[0, i, l] - ((1 - 2 * self.BIT[0, i, l]) * self.LLR[0, i, l])) / 2
 
 
 def bit_reversed(x, n):
